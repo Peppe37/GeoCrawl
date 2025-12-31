@@ -3,7 +3,7 @@
 
 ## Indice
 
-[__TOC__]
+__TOC__
 
 ### Visione del Prodotto
 L'applicazione è un "atlante personale delle esperienze". Permette agli utenti di creare mappe tematiche (es. baci, viaggi, cibo) che tracciano eventi geografici. Il sistema scala automaticamente la visualizzazione e le statistiche da livello locale (città) a globale (continenti).
