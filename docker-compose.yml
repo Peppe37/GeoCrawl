@@ -1,8 +1,9 @@
 services:
-  db:
+  odyssey-postgres:
     image: postgres:15-alpine
     restart: always
     container_name: odyssey-db
+    hostname: odyssey-postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
@@ -23,7 +24,7 @@ services:
     restart: always
     container_name: odyssey-backend
     environment:
-      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@odyssey-postgres:5432/${POSTGRES_DB}
       - SECRET_KEY=${SECRET_KEY}
       - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES}
       - PROJET_NAME=${PROJECT_NAME}
@@ -38,7 +39,7 @@ services:
     volumes:
       - uploads_data:/app/uploads
     depends_on:
-      db:
+      odyssey-postgres:
         condition: service_healthy
     networks:
       - odyssey-network
